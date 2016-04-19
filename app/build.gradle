@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.wangw.goodhelp"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -25,5 +25,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.roger.catloadinglibrary:catloadinglibrary:1.0.0'
     compile files('libs/exLogcat-1.0.jar')
 }

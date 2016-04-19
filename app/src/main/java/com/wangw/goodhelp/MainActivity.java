@@ -10,8 +10,17 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(!isLogin()){
+            jumpToLogin();
+            return;
+        }
+
         setContentView(R.layout.activity_main);
 
         initTitleBar("微商云助手");
+
+
+
     }
 }
