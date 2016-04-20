@@ -1,5 +1,6 @@
 package com.wangw.goodhelp;
 
+import com.wangw.goodhelp.model.UserInfo;
 import com.wangw.goodhelp.utils.SpUtils;
 
 /**
@@ -18,6 +19,18 @@ public class UserManager {
 
     public static boolean isLogin(){
        return SpUtils.getBool("login_status",false);
+    }
+
+    public static void saveUserInfo(UserInfo info){
+
+    }
+
+    public static UserInfo getUserInfo(){
+        return null;
+    }
+
+    public static String getUid(){
+        return "";
     }
 
 

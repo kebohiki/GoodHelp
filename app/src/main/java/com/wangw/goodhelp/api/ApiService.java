@@ -11,6 +11,7 @@ import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
+import rx.Observable;
 
 /**
  * Created by wangw on 2016/4/20.
@@ -23,7 +24,7 @@ public interface ApiService {
     Call<Response<TopicInfo>> getAllTopics(@Body Map<String,String> params, Callback<Response<TopicInfo>> callback);
 
     @POST("userLogin")
-    Call<Response<UserInfo>> userLogin(@Body Map<String,String> params);
+    Observable<Response<UserInfo>> userLogin(@Body Map<String,String> params);
 
     @POST("userRegister")
     Call<Response<UserInfo>> userRegister(@Body Map<String,String> params, Callback<Response<UserInfo>> callback);

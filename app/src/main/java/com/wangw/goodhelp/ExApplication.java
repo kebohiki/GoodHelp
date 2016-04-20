@@ -21,6 +21,15 @@ public class ExApplication extends Application {
         mInstatnce = this;
 
         onInitLog();
+        initHawk();
+    }
+
+    private void initHawk() {
+//        Hawk.init(this)
+//                .setEncryptionMethod(HawkBuilder.EncryptionMethod.MEDIUM)
+//                .setStorage(HawkBuilder.newSqliteStorage(this))
+//                .setLogLevel(LogLevel.FULL)
+//                .build();
     }
 
     private void onInitLog() {

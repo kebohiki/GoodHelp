@@ -33,9 +33,14 @@ public class BaseActivity extends FragmentActivity {
     }
 
     protected void showLoading(){
+        showLoading(true);
+    }
+
+    protected void showLoading(boolean cancelable){
         if(mLoading == null){
             mLoading = new CatLoadingView();
         }
+        mLoading.setCancelable(cancelable);
         mLoading.show(getSupportFragmentManager(),"");
     }
 
@@ -62,10 +67,10 @@ public class BaseActivity extends FragmentActivity {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 
-    protected void onFail(Throwable t){
+    protected void onFail(Throwable e){
         hidenLoading();
-        if(t != null){
-            L.e(t.getMessage());
+        if(e != null){
+            L.e(e.getMessage());
             showToast("网络错误,请稍后重试");
         }
     }
