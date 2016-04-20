@@ -3,10 +3,13 @@ package com.wangw.goodhelp.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
+import com.exlogcat.L;
 import com.roger.catloadinglibrary.CatLoadingView;
 import com.wangw.goodhelp.R;
 import com.wangw.goodhelp.UserManager;
+import com.wangw.goodhelp.model.Response;
 import com.wangw.goodhelp.ui.activitys.LoginActivity;
 import com.wangw.goodhelp.ui.views.TitleBarView;
 
@@ -36,6 +39,12 @@ public class BaseActivity extends FragmentActivity {
         mLoading.show(getSupportFragmentManager(),"");
     }
 
+    protected void hidenLoading(){
+        if(mLoading != null && !mLoading.isHidden()){
+            mLoading.dismiss();
+        }
+    }
+
     protected void jumpToLogin(){
         startActivity(new Intent(this, LoginActivity.class));
         finish();
@@ -43,6 +52,22 @@ public class BaseActivity extends FragmentActivity {
 
     protected boolean isLogin(){
         return UserManager.isLogin();
+    }
+
+    protected void showToast(int resId){
+        Toast.makeText(this,resId,Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showToast(String msg){
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    protected void onFail(Throwable t){
+        hidenLoading();
+        if(t != null){
+            L.e(t.getMessage());
+            showToast("网络错误,请稍后重试");
+        }
     }
 
 }

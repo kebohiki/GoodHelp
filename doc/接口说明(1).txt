@@ -1,0 +1,38 @@
+接口说明；
+规范：
+
+接口全部以json形式返回，格式如下：
+error <是否有错误> 0：无，1：有
+message <信息> error大于0时，会说明错误原因
+timestamp <时间> 请求时间，时间戳的形式
+data <信息>
+
+
+1）获取所有文章
+接口：http://ningweb.com/product_picture/api/index.php/nightkiss/getAllTopics
+传值：page <页码>，默认为0；pageSize <一页多少数据>，默认为20；userId <用户ID>，默认为0；
+返回：文章列表
+
+返回的列表字段
+	topic_intro：文章内容
+	author为要显示的发布者信息，从中取nickname即为昵称，从其中的file里取key，就是头像的相对路径
+	files：图片数组，里面的key是图片的相对路径
+	图片url格式即为：http://image.mengbaopai.com/ + key + 裁剪方式
+例子：http://image.mengbaopai.com/2016/04/12/204e35e3ed13330ce9a22bba64b5aeaf.jpg_/fw/100 按此宽度100等比例缩放图片
+     http://image.mengbaopai.com/2016/04/12/204e35e3ed13330ce9a22bba64b5aeaf.jpg_/fh/100 按此高度等比例缩放图片
+     http://image.mengbaopai.com/2016/04/12/204e35e3ed13330ce9a22bba64b5aeaf.jpg_/fwfh/200x200 按此宽高裁剪图片
+     http://image.mengbaopai.com/2016/04/12/204e35e3ed13330ce9a22bba64b5aeaf.jpg_/sq/180 居中裁成正方形
+
+
+2）用户登录
+接口：http://ningweb.com/product_picture/api/index.php/nightkiss/userLogin
+传值：username <用户名>；passwd <密码>
+返回：用户信息
+
+
+2）用户注册
+接口：http://ningweb.com/product_picture/api/index.php/nightkiss/userRegister
+传值：username <用户名>；mobile <手机号>；passwd <密码>
+返回：用户信息
+
+
