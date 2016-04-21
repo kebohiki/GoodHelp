@@ -57,25 +57,18 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.btn_login)
     public void onClick(View view) {
-        if(onCheck())
+        if (onCheck())
             onLogin(mEvUsername.getText().toString(), mEvUserpwd.getText().toString());
     }
 
     private boolean onCheck() {
-        if (CommonUtils.isNotNull(mEvUsername)){
-            if(CommonUtils.isPhoneNum(mEvUsername.getText().toString())) {
-                if (CommonUtils.isNotNull(mEvUserpwd)) {
-                    if(mEvUserpwd.length() >= 6 && mEvUserpwd.getText().length() <= 15)
-                        return true;
-                    else
-                        showToast("请输入正确的密码");
-                }else {
-                    showToast("密码不能为空");
-                }
-            }else {
-                showToast("请输入正确的手机号");
+        if (CommonUtils.isNotNull(mEvUsername)) {
+            if (CommonUtils.isNotNull(mEvUserpwd)) {
+                return true;
+            } else {
+                showToast("密码不能为空");
             }
-        }else {
+        } else {
             showToast("手机号不能为空");
         }
 
@@ -98,7 +91,7 @@ public class LoginActivity extends BaseActivity {
             showToast("再按一次退出程序");
             // 利用handler延迟发送更改状态信息
             Observable.empty()
-                    .delay(2000, TimeUnit.MILLISECONDS,Schedulers.newThread())
+                    .delay(2000, TimeUnit.MILLISECONDS, Schedulers.newThread())
                     .subscribe(new Subscriber<Object>() {
                         @Override
                         public void onCompleted() {
@@ -141,11 +134,12 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onNext(Response<UserInfo> userInfoResponse) {
                         hidenLoading();
-                        if(userInfoResponse.isSuccess()){
+                        if (userInfoResponse.isSuccess()) {
                             UserManager.setLoginSuccess();
                             UserManager.saveUserInfo(userInfoResponse.getData());
                             LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        }else {
+                            finish();
+                        } else {
                             showToast(userInfoResponse.getMessage());
                         }
                     }

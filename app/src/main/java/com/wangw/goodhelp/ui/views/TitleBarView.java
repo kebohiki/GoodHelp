@@ -24,9 +24,11 @@ public class TitleBarView extends RelativeLayout {
     @Bind(R.id.lv_title_right)
     LinearLayout mlvTitleRight;
     @Bind(R.id.tv_title)
-     TextView mTvTitle;
+    TextView mTvTitle;
+    @Bind(R.id.lv_title_left)
+    LinearLayout mLvTitleLeft;
 
-    private boolean mIsBackFinishEnable;
+    private boolean mIsBackFinishEnable = true;
     private OnClickTitleBarBackCallback mCallBack;
     private TextView mTvRightText;
 
@@ -45,11 +47,11 @@ public class TitleBarView extends RelativeLayout {
         ButterKnife.bind(this);
     }
 
-    public void showBackView(Boolean isShow){
-        if(isShow){
-            mlvTitleRight.setVisibility(VISIBLE);
-        }else {
-            mlvTitleRight.setVisibility(GONE);
+    public void showBackView(Boolean isShow) {
+        if (isShow) {
+            mLvTitleLeft.setVisibility(VISIBLE);
+        } else {
+            mLvTitleLeft.setVisibility(GONE);
         }
     }
 

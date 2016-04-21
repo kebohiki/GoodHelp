@@ -9,6 +9,7 @@ import com.exlogcat.L;
 import com.roger.catloadinglibrary.CatLoadingView;
 import com.wangw.goodhelp.R;
 import com.wangw.goodhelp.common.UserManager;
+import com.wangw.goodhelp.model.UserInfo;
 import com.wangw.goodhelp.ui.activitys.LoginActivity;
 import com.wangw.goodhelp.ui.views.TitleBarView;
 
@@ -40,7 +41,7 @@ public class BaseActivity extends FragmentActivity {
             mLoading = new CatLoadingView();
         }
         mLoading.setCancelable(cancelable);
-        mLoading.show(getSupportFragmentManager(),"");
+        mLoading.show(getSupportFragmentManager(), "");
     }
 
     protected void hidenLoading(){
@@ -56,6 +57,10 @@ public class BaseActivity extends FragmentActivity {
 
     protected boolean isLogin(){
         return UserManager.isLogin();
+    }
+
+    protected UserInfo getUserInfo(){
+        return UserManager.getUserInfo();
     }
 
     protected void showToast(int resId){
