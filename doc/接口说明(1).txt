@@ -28,6 +28,7 @@ data <信息>
 接口：http://ningweb.com/product_picture/api/index.php/nightkiss/userLogin
 传值：username <用户名>；passwd <密码>
 返回：用户信息
+测试登录名xiaomi 密码111111 用户名不一定是手机，不用限制输入
 
 
 2）用户注册

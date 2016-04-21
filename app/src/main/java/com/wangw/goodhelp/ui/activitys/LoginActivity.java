@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.wangw.goodhelp.MainActivity;
 import com.wangw.goodhelp.R;
-import com.wangw.goodhelp.UserManager;
+import com.wangw.goodhelp.common.UserManager;
 import com.wangw.goodhelp.api.ServiceHelper;
 import com.wangw.goodhelp.base.BaseActivity;
 import com.wangw.goodhelp.model.Response;
@@ -28,8 +28,6 @@ import butterknife.OnClick;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class LoginActivity extends BaseActivity {

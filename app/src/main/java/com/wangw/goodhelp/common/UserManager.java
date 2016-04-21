@@ -1,5 +1,6 @@
-package com.wangw.goodhelp;
+package com.wangw.goodhelp.common;
 
+import com.orhanobut.hawk.Hawk;
 import com.wangw.goodhelp.model.UserInfo;
 import com.wangw.goodhelp.utils.SpUtils;
 
@@ -8,9 +9,11 @@ import com.wangw.goodhelp.utils.SpUtils;
  */
 public class UserManager {
 
+    private static final String KEY_USERINFO = "userinfo_key";
 
     public static void logout(){
         SpUtils.saveBool("login_status",false);
+        Hawk.remove(KEY_USERINFO);
     }
 
     public static void setLoginSuccess(){
@@ -22,16 +25,19 @@ public class UserManager {
     }
 
     public static void saveUserInfo(UserInfo info){
-
+        Hawk.put(KEY_USERINFO,info);
     }
 
     public static UserInfo getUserInfo(){
-        return null;
+        return Hawk.get(KEY_USERINFO);
     }
 
     public static String getUid(){
-        return "";
+        return hasUserInfo() ? getUserInfo().getUser_id() : "";
     }
 
+    public static boolean hasUserInfo(){
+        return getUserInfo() != null;
+    }
 
 }

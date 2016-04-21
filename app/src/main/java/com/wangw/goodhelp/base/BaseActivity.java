@@ -8,8 +8,7 @@ import android.widget.Toast;
 import com.exlogcat.L;
 import com.roger.catloadinglibrary.CatLoadingView;
 import com.wangw.goodhelp.R;
-import com.wangw.goodhelp.UserManager;
-import com.wangw.goodhelp.model.Response;
+import com.wangw.goodhelp.common.UserManager;
 import com.wangw.goodhelp.ui.activitys.LoginActivity;
 import com.wangw.goodhelp.ui.views.TitleBarView;
 
