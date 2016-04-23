@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by wangw on 16/4/21.
- */
+
 public class ViewHolder {
     private final SparseArray<View> mViews;
     private int mPosition;

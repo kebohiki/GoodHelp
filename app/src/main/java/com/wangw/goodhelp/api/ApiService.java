@@ -4,6 +4,7 @@ import com.wangw.goodhelp.model.Response;
 import com.wangw.goodhelp.model.TopicInfo;
 import com.wangw.goodhelp.model.UserInfo;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -21,13 +22,13 @@ public interface ApiService {
 
 
     @POST("getAllTopics")
-    Call<Response<TopicInfo>> getAllTopics(@Body Map<String,String> params, Callback<Response<TopicInfo>> callback);
+    Observable<Response<List<TopicInfo>>> getAllTopics(@Body Map<String,String> params);
 
     @POST("userLogin")
     Observable<Response<UserInfo>> userLogin(@Body Map<String,String> params);
 
     @POST("userRegister")
-    Call<Response<UserInfo>> userRegister(@Body Map<String,String> params, Callback<Response<UserInfo>> callback);
+    Observable<Response<UserInfo>> userRegister(@Body Map<String,String> params);
 
 
 }

@@ -117,7 +117,7 @@ public class LoginActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         map.put("username", userName);
         map.put("passwd", pwd);
-        ServiceHelper.GetApi().userLogin(map)
+        ServiceHelper.getApi().userLogin(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Response<UserInfo>>() {

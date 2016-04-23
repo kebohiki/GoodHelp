@@ -9,4 +9,5 @@
     
     <color name="default_background">#FFFFFF</color>
 
+    <color name="gray">#efefef</color>
 </resources>

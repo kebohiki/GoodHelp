@@ -36,6 +36,7 @@ public class ExApplication extends Application {
     }
 
     private void onInitLog() {
+        //TODO 发布时记得关闭Log
         L.init("GOODHELP")
         .hideThreadInfo()
         .methodCount(2);

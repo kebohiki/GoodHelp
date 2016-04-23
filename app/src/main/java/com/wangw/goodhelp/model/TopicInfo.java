@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class TopicInfo {
 
-
     /**
      * topic_id : 1488
      * admin_id : 1451
@@ -25,7 +24,6 @@ public class TopicInfo {
      * tag : {"topic_tag_id":"1453","tag_name":"茶叶","following_count":"0","rating":"0","locked":"0","created_time":"1460011421"}
      * files : [{"key":"2016/04/12/204e35e3ed13330ce9a22bba64b5aeaf.jpg","path":"2016/04/12/","type":"image","width":"720","height":"699","farm":"farm1","bucket":"hbimg","host":"http://ningweb.com/product_picture/","frames":1},{"key":"2016/04/12/5dedd88c81ce519441ec0c73687bde8c.jpg","path":"2016/04/12/","type":"image","width":"960","height":"1280","farm":"farm1","bucket":"hbimg","host":"http://ningweb.com/product_picture/","frames":1},{"key":"2016/04/12/689539da2d17c27b4d0f777fd9b1603d.jpg","path":"2016/04/12/","type":"image","width":"960","height":"1185","farm":"farm1","bucket":"hbimg","host":"http://ningweb.com/product_picture/","frames":1},{"key":"2016/04/12/2253c04cfa1bf1ff8282e299e496ebfd.jpg","path":"2016/04/12/","type":"image","width":"960","height":"1280","farm":"farm1","bucket":"hbimg","host":"http://ningweb.com/product_picture/","frames":1},{"key":"2016/04/12/6b17bd44b31f2eb0616484f6a41edbec.jpg","path":"2016/04/12/","type":"image","width":"960","height":"1280","farm":"farm1","bucket":"hbimg","host":"http://ningweb.com/product_picture/","frames":1}]
      */
-
 
     private String topic_id;
     private String admin_id;
@@ -48,7 +46,7 @@ public class TopicInfo {
      * file : {"key":"","type":"file","width":"180","height":"180","farm":"farm1","bucket":"hbimg","host":"http://ningweb.com/product_picture/","frames":1}
      */
 
-    private AuthorEntity author;
+    private AuthorBean author;
     /**
      * topic_tag_id : 1453
      * tag_name : 茶叶
@@ -57,8 +55,8 @@ public class TopicInfo {
      * locked : 0
      * created_time : 1460011421
      */
-
-    private TagEntity tag;
+//TODO 暂时放弃解析这个字段，这个字段数据类型不统一
+//    private TagBean tag;
     /**
      * key : 2016/04/12/204e35e3ed13330ce9a22bba64b5aeaf.jpg
      * path : 2016/04/12/
@@ -71,7 +69,7 @@ public class TopicInfo {
      * frames : 1
      */
 
-    private List<FilesEntity> files;
+    private List<FilesBean> files;
 
     public String getTopic_id() {
         return topic_id;
@@ -153,31 +151,24 @@ public class TopicInfo {
         this.created_time = created_time;
     }
 
-    public AuthorEntity getAuthor() {
+    public AuthorBean getAuthor() {
         return author;
     }
 
-    public void setAuthor(AuthorEntity author) {
+    public void setAuthor(AuthorBean author) {
         this.author = author;
     }
 
-    public TagEntity getTag() {
-        return tag;
-    }
 
-    public void setTag(TagEntity tag) {
-        this.tag = tag;
-    }
-
-    public List<FilesEntity> getFiles() {
+    public List<FilesBean> getFiles() {
         return files;
     }
 
-    public void setFiles(List<FilesEntity> files) {
+    public void setFiles(List<FilesBean> files) {
         this.files = files;
     }
 
-    public static class AuthorEntity {
+    public static class AuthorBean {
         private String uid;
         private String avatar_id;
         private String username;
@@ -196,7 +187,7 @@ public class TopicInfo {
          * frames : 1
          */
 
-        private FileEntity file;
+        private FileBean file;
 
         public String getUid() {
             return uid;
@@ -254,15 +245,15 @@ public class TopicInfo {
             this.passwd = passwd;
         }
 
-        public FileEntity getFile() {
+        public FileBean getFile() {
             return file;
         }
 
-        public void setFile(FileEntity file) {
+        public void setFile(FileBean file) {
             this.file = file;
         }
 
-        public static class FileEntity {
+        public static class FileBean {
             private String key;
             private String type;
             private String width;
@@ -338,7 +329,7 @@ public class TopicInfo {
         }
     }
 
-    public static class TagEntity {
+    public static class TagBean {
         private String topic_tag_id;
         private String tag_name;
         private String following_count;
@@ -395,7 +386,7 @@ public class TopicInfo {
         }
     }
 
-    public static class FilesEntity {
+    public static class FilesBean {
         private String key;
         private String path;
         private String type;

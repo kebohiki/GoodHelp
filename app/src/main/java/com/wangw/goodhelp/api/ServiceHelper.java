@@ -1,5 +1,7 @@
 package com.wangw.goodhelp.api;
 
+import com.wangw.goodhelp.common.Constants;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -11,12 +13,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceHelper {
 
-    private static final String BASEURL = "http://ningweb.com/product_picture/api/index.php/nightkiss/";
 
     private static Retrofit mRetrofit;
     private static ApiService mService;
 
-    public static ApiService GetApi(){
+    public static ApiService getApi(){
         if(mService == null){
             mService = getRetrofit().create(ApiService.class);
         }
@@ -31,7 +32,7 @@ public class ServiceHelper {
                     .addNetworkInterceptor(log)
                     .build();
             mRetrofit = new Retrofit.Builder()
-                    .baseUrl(BASEURL)
+                    .baseUrl(Constants.BASEURL)
                     .client(httpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

@@ -1,4 +1,5 @@
 package com.wangw.goodhelp.ui.adapter;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by wangw on 16/4/21.
+ * Created by long on 2015/8/12.
  */
 public abstract class CommonAdapter<T> extends BaseAdapter {
     protected LayoutInflater mInflater;

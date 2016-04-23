@@ -32,22 +32,31 @@ public class BaseActivity extends FragmentActivity {
             mTitle.setTitle(title);
     }
 
-    protected void showLoading(){
+    public void showLoading(){
         showLoading(true);
     }
 
-    protected void showLoading(boolean cancelable){
+    public void showLoading(boolean cancelable){
         if(mLoading == null){
             mLoading = new CatLoadingView();
         }
         mLoading.setCancelable(cancelable);
-        mLoading.show(getSupportFragmentManager(), "");
+        try {
+            mLoading.show(getSupportFragmentManager(), "");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-    protected void hidenLoading(){
-        if(mLoading != null && !mLoading.isHidden()){
-            mLoading.dismiss();
+    public void hidenLoading(){
+        if(mLoading != null){
+            try {
+                mLoading.dismiss();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
+        mLoading = null;
     }
 
     protected void jumpToLogin(){
@@ -63,11 +72,15 @@ public class BaseActivity extends FragmentActivity {
         return UserManager.getUserInfo();
     }
 
+    protected String getUid(){
+        return isLogin() ? getUserInfo().getUser_id() : "";
+    }
+
     protected void showToast(int resId){
         Toast.makeText(this,resId,Toast.LENGTH_SHORT).show();
     }
 
-    protected void showToast(String msg){
+    public void showToast(String msg){
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 

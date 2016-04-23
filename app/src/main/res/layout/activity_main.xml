@@ -3,13 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wangw.goodhelp.MainActivity"
-    tools:showIn="@layout/activity_main">
+    android:orientation="vertical"
+    android:background="@color/gray"
+    tools:context="com.wangw.goodhelp.MainActivity">
 
-    <include layout="@layout/layout_titlebar"/>
+    <include layout="@layout/layout_titlebar" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.wangw.goodhelp.ui.views.RefreshLayout
+            android:id="@+id/refreshview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/lv_topics"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#00000000"
+                android:dividerHeight="0dp" />
+        </com.wangw.goodhelp.ui.views.RefreshLayout>
+
+        <TextView
+            android:id="@+id/tv_emptyview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:text="暂无数据，请稍后重试!"
+            android:visibility="gone"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </FrameLayout>
 </LinearLayout>
