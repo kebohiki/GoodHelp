@@ -20,6 +20,17 @@ public class SpUtils {
                 .commit();
     }
 
+    public static void saveString(String key,String value){
+        getSharePreferences()
+                .edit()
+                .putString(key, value)
+                .commit();
+    }
+
+    public static String getString(String key,String defaultValue){
+        return getSharePreferences().getString(key,defaultValue);
+    }
+
     public static boolean getBool(String key,Boolean defaultValue){
         return getSharePreferences().getBoolean(key,defaultValue);
     }

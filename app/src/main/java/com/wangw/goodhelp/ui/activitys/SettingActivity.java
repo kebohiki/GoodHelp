@@ -11,6 +11,7 @@ import com.wangw.goodhelp.base.BaseActivity;
 import com.wangw.goodhelp.common.UserManager;
 import com.wangw.goodhelp.ui.views.TitleBarView;
 import com.wangw.goodhelp.utils.FileUtils;
+import com.wangw.goodhelp.utils.SpUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,7 +43,7 @@ public class SettingActivity extends BaseActivity {
         initTitleBar("设置");
         mTitle.showBackView(true);
         if (isLogin() && getUserInfo() != null)
-            mTvUsername.setText("用户名: " + getUserInfo().getUsername());
+            mTvUsername.setText("用户名: " + UserManager.getUserName());
         else {
             mTvUsername.setVisibility(View.GONE);
         }

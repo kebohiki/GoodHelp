@@ -16,8 +16,13 @@ public class UserManager {
         Hawk.remove(KEY_USERINFO);
     }
 
-    public static void setLoginSuccess(){
+    public static void setLoginSuccess(String userName){
         SpUtils.saveBool("login_status",true);
+        SpUtils.saveString("username", userName);
+    }
+
+    public static String getUserName(){
+       return SpUtils.getString("username","");
     }
 
     public static boolean isLogin(){

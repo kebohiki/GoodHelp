@@ -112,7 +112,7 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
-    private void onLogin(String userName, String pwd) {
+    private void onLogin(final String userName, String pwd) {
         showLoading(false);
         Map<String, String> map = new HashMap<>();
         map.put("username", userName);
@@ -135,7 +135,7 @@ public class LoginActivity extends BaseActivity {
                     public void onNext(Response<UserInfo> userInfoResponse) {
                         hidenLoading();
                         if (userInfoResponse.isSuccess()) {
-                            UserManager.setLoginSuccess();
+                            UserManager.setLoginSuccess(userName);
                             UserManager.saveUserInfo(userInfoResponse.getData());
                             LoginActivity.this.startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
