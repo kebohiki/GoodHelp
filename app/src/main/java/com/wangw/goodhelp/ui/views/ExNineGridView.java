@@ -23,6 +23,7 @@ public class ExNineGridView extends ViewGroup implements View.OnClickListener {
     private int mCloumns;
     private int mGap;
     private int mTotalWidth;
+    private OnItemClickListener mListener;
 
     public ExNineGridView(Context context) {
         super(context);
@@ -100,6 +101,7 @@ public class ExNineGridView extends ViewGroup implements View.OnClickListener {
         for (int i = 0;i < count; i++){
             ExImageView img = (ExImageView) getChildAt(i);
             img.setImageURL(mFiles.get(i).getKey());
+            img.setPosition(i);
             lef = i % mCloumns * (singeSize +mGap);
             top = i / mCloumns * (singeSize + mGap);
             right = lef + singeSize;
@@ -133,9 +135,27 @@ public class ExNineGridView extends ViewGroup implements View.OnClickListener {
         }
     }
 
+    public List<TopicInfo.FilesBean> getFiles(){
+        return mFiles;
+    }
 
     @Override
     public void onClick(View view) {
-
+        if(mListener != null && view instanceof ExImageView){
+            mListener.onItemClick((ExImageView) view,((ExImageView)view).getPosition());
+        }
     }
+
+    public OnItemClickListener getListener() {
+        return mListener;
+    }
+
+    public void setListener(OnItemClickListener mListener) {
+        this.mListener = mListener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(ExImageView item,int position);
+    }
+
 }

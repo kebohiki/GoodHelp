@@ -1,5 +1,6 @@
 package com.wangw.goodhelp.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.view.View;
@@ -10,8 +11,10 @@ import com.exlogcat.L;
 import com.wangw.goodhelp.R;
 import com.wangw.goodhelp.base.BaseActivity;
 import com.wangw.goodhelp.common.Constants;
-import com.wangw.goodhelp.model.DowloadResult;
+import com.wangw.goodhelp.model.DownloadResult;
 import com.wangw.goodhelp.model.TopicInfo;
+import com.wangw.goodhelp.ui.activitys.ImageGalleryActivity;
+import com.wangw.goodhelp.ui.views.ExImageView;
 import com.wangw.goodhelp.ui.views.ExNineGridView;
 import com.wangw.goodhelp.utils.CommonUtils;
 import com.wangw.goodhelp.utils.FileUtils;
@@ -48,7 +51,7 @@ public class TopicListAdapter extends CommonAdapter<TopicInfo> {
 //        NineGridlayout nv = helper.getView(R.id.nineview);
 //        nv.setImagesData(item.getFiles());
 
-        ExNineGridView nv = helper.getView(R.id.nineview);
+        final ExNineGridView nv = helper.getView(R.id.nineview);
 //        int r = new Random().nextInt(item.getFiles().size());
         nv.setImageList(item.getFiles());
 
@@ -56,6 +59,19 @@ public class TopicListAdapter extends CommonAdapter<TopicInfo> {
             @Override
             public void onClick(View view) {
                 onClickShareView(item);
+            }
+        });
+
+        nv.setListener(new ExNineGridView.OnItemClickListener() {
+            @Override
+            public void onItemClick(ExImageView item, int position) {
+                List<TopicInfo.FilesBean> files = nv.getFiles();
+                int count = files.size();
+                String[] keys = new String[count];
+                for (int i = 0 ;i < count;i++){
+                    keys[i] = files.get(i).getKey();
+                }
+                ImageGalleryActivity.jumTo((Activity) mContext,keys,position);
             }
         });
 
@@ -81,15 +97,15 @@ public class TopicListAdapter extends CommonAdapter<TopicInfo> {
                         return Constants.BASEIMAGEURL + filesBean.getKey();
                     }
                 })
-                .map(new Func1<String, DowloadResult>() {
+                .map(new Func1<String, DownloadResult>() {
                     @Override
-                    public DowloadResult call(String s) {
+                    public DownloadResult call(String s) {
                         return FileUtils.downloadFile(mContext,s, mCachePath);
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<DowloadResult>() {
+                .subscribe(new Subscriber<DownloadResult>() {
 
                     private int mErrorNum = 0;
                     private ArrayList<Uri> mUris = new ArrayList<Uri>(5);
@@ -111,7 +127,7 @@ public class TopicListAdapter extends CommonAdapter<TopicInfo> {
                     }
 
                     @Override
-                    public void onNext(DowloadResult result) {
+                    public void onNext(DownloadResult result) {
                         if (!result.result) {
                             mErrorNum++;
                         } else {

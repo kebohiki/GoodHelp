@@ -18,6 +18,7 @@ public class ExImageView extends ImageView {
 
     private String mURL;
     private boolean mIsAttached;
+    private int mPosition;
 
     public ExImageView(Context context) {
         super(context);
@@ -71,7 +72,11 @@ public class ExImageView extends ImageView {
         ImageHelp.loadHeaderImage(getContext(),url,this);
     }
 
+    public int getPosition() {
+        return mPosition;
+    }
 
-
-
+    public void setPosition(int mPosition) {
+        this.mPosition = mPosition;
+    }
 }
