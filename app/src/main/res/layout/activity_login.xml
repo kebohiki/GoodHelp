@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="输入手机号"
-        android:text="xiaomi"
         android:inputType="number"
         android:textSize="16sp"
         android:drawableLeft="@mipmap/login_user_icon"
@@ -33,7 +32,6 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:hint="输入密码"
-        android:text="111111"
         android:textSize="16sp"
         android:drawableLeft="@mipmap/login_secret_icon"
         android:background="@drawable/shape_edittext_backgroud"/>
