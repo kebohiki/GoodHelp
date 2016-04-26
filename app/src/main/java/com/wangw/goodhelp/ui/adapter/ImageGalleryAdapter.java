@@ -2,10 +2,12 @@ package com.wangw.goodhelp.ui.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.exlogcat.L;
 import com.wangw.goodhelp.utils.ImageHelp;
 
 import java.util.List;
@@ -20,13 +22,27 @@ public class ImageGalleryAdapter extends PagerAdapter {
     private String[] mImgs;
     private PhotoView[] mViews;
     private Context mContext;
+    private OnItemLongClickListener mListener;
     public ImageGalleryAdapter(Context context,String[] imgs){
         mContext = context;
         this.mImgs = imgs;
         mViews = new PhotoView[4];
         for (int i = 0;i<4;i++){
-            mViews[i] = new PhotoView(mContext);
+            PhotoView view = new PhotoView(mContext);
+            view.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if(mListener != null)
+                        mListener.onLongClick(v);
+                    return false;
+                }
+            });
+            mViews[i] = view;
         }
+    }
+
+    public void setListener(OnItemLongClickListener listener){
+        this.mListener = listener;
     }
 
     @Override
@@ -36,15 +52,15 @@ public class ImageGalleryAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        PhotoView view = getView(position);
+        ImageView view = getView(position);
         ImageHelp.loadImage(mContext,getItem(position),view);
-        container.addView(view);
+        container.addView(view, ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.MATCH_PARENT);
         return view;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        PhotoView view = (PhotoView) object;
+        ImageView view = (ImageView) object;
         view.setImageDrawable(null);
         container.removeView(view);
 //        super.destroyItem(container, position, object);
@@ -54,17 +70,16 @@ public class ImageGalleryAdapter extends PagerAdapter {
         return mImgs[position];
     }
 
-    public PhotoView getView(int position){
-        PhotoView view =  new PhotoView(mContext);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
-        view.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        view.setLayoutParams(params);
-        return view;
-//        return mViews[position % mViews.length];
+    public ImageView getView(int position){
+        return mViews[position % mViews.length];
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return true;
+        return view == object;
+    }
+
+    public interface  OnItemLongClickListener{
+        void onLongClick(View view);
     }
 }

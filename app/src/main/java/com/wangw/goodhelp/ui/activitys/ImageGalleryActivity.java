@@ -14,6 +14,7 @@ import com.wangw.goodhelp.base.BaseActivity;
 import com.wangw.goodhelp.common.Constants;
 import com.wangw.goodhelp.model.DownloadResult;
 import com.wangw.goodhelp.ui.adapter.ImageGalleryAdapter;
+import com.wangw.goodhelp.ui.views.HackyViewPager;
 import com.wangw.goodhelp.utils.FileUtils;
 
 import butterknife.Bind;
@@ -23,10 +24,11 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class ImageGalleryActivity extends BaseActivity implements View.OnLongClickListener {
+
+public class ImageGalleryActivity extends BaseActivity implements  ViewPager.OnPageChangeListener, ImageGalleryAdapter.OnItemLongClickListener {
 
     @Bind(R.id.pager)
-    ViewPager mPager;
+    HackyViewPager mPager;
 
     private AlertDialog mDialog;
     private String mCachePath;
@@ -56,16 +58,16 @@ public class ImageGalleryActivity extends BaseActivity implements View.OnLongCli
 
         mAdapter = new ImageGalleryAdapter(this,keys);
         mPager.setAdapter(mAdapter);
+        mAdapter.setListener(this);
         mPager.setCurrentItem(selectIndex);
 
-        mPager.setOnLongClickListener(this);
+        mPager.addOnPageChangeListener(this);
     }
 
 
     @Override
-    public boolean onLongClick(View v) {
+    public void onLongClick(View v) {
         showAlert();
-        return true;
     }
 
     private void showAlert(){
@@ -89,19 +91,23 @@ public class ImageGalleryActivity extends BaseActivity implements View.OnLongCli
     }
 
     private void onDownLoadImage(final String url){
+        L.d("onDownLoadImage");
+        showLoading();
         Observable.create(new Observable.OnSubscribe<DownloadResult>() {
             @Override
             public void call(Subscriber<? super DownloadResult> subscriber) {
-                DownloadResult result = FileUtils.downloadFile(ImageGalleryActivity.this,url,mCachePath);
+                L.d("call");
+                DownloadResult result = FileUtils.downloadFile(ImageGalleryActivity.this,url,mCachePath,true);
                 subscriber.onNext(result);
+                subscriber.onCompleted();
             }
         })
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<DownloadResult>() {
                     @Override
                     public void onCompleted() {
-
+                        hidenLoading();
                     }
 
                     @Override
@@ -121,4 +127,18 @@ public class ImageGalleryActivity extends BaseActivity implements View.OnLongCli
                 });
     }
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
 }

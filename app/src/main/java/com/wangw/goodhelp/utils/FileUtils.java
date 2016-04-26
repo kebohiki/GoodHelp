@@ -79,10 +79,11 @@ public class FileUtils {
     }
 
     public static DownloadResult downloadFile(Context context,String fileURL,String cachePath){
-        return downloadFile(context,fileURL,cachePath);
+        return downloadFile(context,fileURL,cachePath,false);
     }
 
     public static DownloadResult downloadFile(Context context,String fileURL,String cachePath,boolean isRefreshStorage){
+        L.d("downloadFile");
         DownloadResult result = new DownloadResult();
         String fileName = fileURL.substring(fileURL.lastIndexOf("/")+1, fileURL.length());
         File file= new File(cachePath,fileName);
