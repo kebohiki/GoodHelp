@@ -2,6 +2,7 @@ package com.wangw.goodhelp.ui.activitys;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -15,6 +16,7 @@ import com.wangw.goodhelp.common.Constants;
 import com.wangw.goodhelp.model.DownloadResult;
 import com.wangw.goodhelp.ui.adapter.ImageGalleryAdapter;
 import com.wangw.goodhelp.ui.views.HackyViewPager;
+import com.wangw.goodhelp.ui.views.IndicatorViewPager;
 import com.wangw.goodhelp.utils.FileUtils;
 
 import butterknife.Bind;
@@ -25,12 +27,12 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class ImageGalleryActivity extends BaseActivity implements  ViewPager.OnPageChangeListener, ImageGalleryAdapter.OnItemLongClickListener {
+public class ImageGalleryActivity extends BaseActivity implements   ImageGalleryAdapter.OnItemLongClickListener {
 
     @Bind(R.id.pager)
-    HackyViewPager mPager;
+    IndicatorViewPager mPager;
 
-    private AlertDialog mDialog;
+    private Dialog mDialog;
     private String mCachePath;
 
     public static void jumTo(Activity from,String[] keys,int selectIndex){
@@ -56,12 +58,12 @@ public class ImageGalleryActivity extends BaseActivity implements  ViewPager.OnP
         int selectIndex = getIntent().getIntExtra("selectindex",0);
         String[] keys = getIntent().getStringArrayExtra("keys");
 
+        mPager.setIndicators(keys.length);
         mAdapter = new ImageGalleryAdapter(this,keys);
-        mPager.setAdapter(mAdapter);
+        mPager.getViewpager().setAdapter(mAdapter);
         mAdapter.setListener(this);
         mPager.setCurrentItem(selectIndex);
 
-        mPager.addOnPageChangeListener(this);
     }
 
 
@@ -77,15 +79,14 @@ public class ImageGalleryActivity extends BaseActivity implements  ViewPager.OnP
                 @Override
                 public void onClick(View v) {
                     if(mDialog != null && mDialog.isShowing())
-                        mDialog.hide();
-                    String key = mAdapter.getItem(mPager.getCurrentItem());
+                        mDialog.dismiss();
+                    String key = mAdapter.getItem(mPager.getViewpager().getCurrentItem());
                     onDownLoadImage(Constants.BASEIMAGEURL+key);
                 }
             });
-            mDialog = new AlertDialog.Builder(this)
-                    .setView(view)
-                    .setCancelable(true)
-                    .create();
+            mDialog = new Dialog(this,R.style.AlertDialogStyle);
+            mDialog.setContentView(view);
+            mDialog.setCancelable(true);
         }
         mDialog.show();
     }
@@ -125,20 +126,5 @@ public class ImageGalleryActivity extends BaseActivity implements  ViewPager.OnP
                         }
                     }
                 });
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
     }
 }

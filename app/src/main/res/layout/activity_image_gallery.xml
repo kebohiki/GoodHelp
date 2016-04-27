@@ -7,10 +7,10 @@
     android:background="#000000"
     tools:context="com.wangw.goodhelp.ui.activitys.ImageGalleryActivity">
 
-    <com.wangw.goodhelp.ui.views.HackyViewPager
+    <com.wangw.goodhelp.ui.views.IndicatorViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"></com.wangw.goodhelp.ui.views.IndicatorViewPager>
 
 
 </RelativeLayout>

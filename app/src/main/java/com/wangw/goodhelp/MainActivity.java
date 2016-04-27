@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.wangw.goodhelp.api.ApiService;
+import com.wangw.goodhelp.api.RequestMap;
 import com.wangw.goodhelp.api.ServiceHelper;
 import com.wangw.goodhelp.base.BaseActivity;
 import com.wangw.goodhelp.model.Response;
@@ -94,7 +95,7 @@ public class MainActivity extends BaseActivity implements RefreshLayout.OnLoadLi
 
 
     private void getTopiListData(final boolean isMore){
-        Map<String,String> map = new HashMap<>();
+        RequestMap map = new RequestMap();
         map.put("page", String.valueOf(mPage));
         map.put("pageSize", String.valueOf(mPageSize));
         map.put("userId", getUid());

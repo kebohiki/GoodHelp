@@ -130,8 +130,6 @@ public class FileUtils {
                 closeIO(in);
                 closeIO(out);
             }
-
-
         }
         return result;
     }
@@ -150,15 +148,14 @@ public class FileUtils {
     public static void refreshMediaStore(Context context,File file){
         start = System.currentTimeMillis();
         // 把文件插入到系统图库
-        try {
-            MediaStore.Images.Media.insertImage(context.getContentResolver(),
-                    file.getAbsolutePath(), file.getName(), null);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            MediaStore.Images.Media.insertImage(context.getContentResolver(),
+//                    file.getAbsolutePath(), file.getName(), null);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
         // 最后通知图库更新
-        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)
-        ));
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
         L.d("耗时：%s",(System.currentTimeMillis() - start));
     }
 

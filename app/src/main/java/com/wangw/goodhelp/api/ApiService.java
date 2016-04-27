@@ -10,6 +10,8 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.Body;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 import rx.Observable;
@@ -21,14 +23,17 @@ public interface ApiService {
 
 
 
+    @FormUrlEncoded
     @POST("getAllTopics")
-    Observable<Response<List<TopicInfo>>> getAllTopics(@Body Map<String,String> params);
+    Observable<Response<List<TopicInfo>>> getAllTopics(@FieldMap RequestMap params);
 
+    @FormUrlEncoded
     @POST("userLogin")
-    Observable<Response<UserInfo>> userLogin(@Body Map<String,String> params);
+    Observable<Response<UserInfo>> userLogin(@FieldMap RequestMap params);
 
+    @FormUrlEncoded
     @POST("userRegister")
-    Observable<Response<UserInfo>> userRegister(@Body Map<String,String> params);
+    Observable<Response<UserInfo>> userRegister(@FieldMap Map<String,String> params);
 
 
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.wangw.goodhelp.MainActivity;
 import com.wangw.goodhelp.R;
+import com.wangw.goodhelp.api.RequestMap;
 import com.wangw.goodhelp.common.UserManager;
 import com.wangw.goodhelp.api.ServiceHelper;
 import com.wangw.goodhelp.base.BaseActivity;
@@ -17,6 +18,7 @@ import com.wangw.goodhelp.model.Response;
 import com.wangw.goodhelp.model.UserInfo;
 import com.wangw.goodhelp.ui.views.TitleBarView;
 import com.wangw.goodhelp.utils.CommonUtils;
+import com.wangw.goodhelp.utils.EncryptUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -114,9 +116,9 @@ public class LoginActivity extends BaseActivity {
 
     private void onLogin(final String userName, String pwd) {
         showLoading(false);
-        Map<String, String> map = new HashMap<>();
+        RequestMap map = new RequestMap();
         map.put("username", userName);
-        map.put("passwd", pwd);
+        map.put("passwd", EncryptUtils.md5(pwd));
         ServiceHelper.getApi().userLogin(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

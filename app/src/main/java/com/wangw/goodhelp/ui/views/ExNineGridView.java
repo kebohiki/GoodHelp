@@ -100,7 +100,7 @@ public class ExNineGridView extends ViewGroup implements View.OnClickListener {
         int lef,top,right,bottom;
         for (int i = 0;i < count; i++){
             ExImageView img = (ExImageView) getChildAt(i);
-            img.setImageURL(mFiles.get(i).getKey());
+            img.setImageURL(mFiles.get(i).getKey()+"_/fwfh/"+singeSize+"x"+singeSize);
             img.setPosition(i);
             lef = i % mCloumns * (singeSize +mGap);
             top = i / mCloumns * (singeSize + mGap);
