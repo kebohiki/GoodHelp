@@ -42,8 +42,6 @@ public class LoginActivity extends BaseActivity {
     EditText mEvUserpwd;
     @Bind(R.id.btn_login)
     Button mBtnLogin;
-    @Bind(R.id.tv_agreement)
-    TextView mTvAgreement;
 
     // 定义一个变量，来标识是否退出
     private static boolean isExit = false;
@@ -61,6 +59,11 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View view) {
         if (onCheck())
             onLogin(mEvUsername.getText().toString(), mEvUserpwd.getText().toString());
+    }
+
+    @OnClick(R.id.tv_agreement)
+    public void onClickAgreement(View view){
+        WebViewActivity.jumpTo(this,"用户手册","http://oxinxian.com/UserAgreement.html");
     }
 
     private boolean onCheck() {

@@ -39,7 +39,8 @@ public class ExApplication extends Application {
         //TODO 发布时记得关闭Log
         L.init("GOODHELP")
         .hideThreadInfo()
-        .methodCount(2);
+        .methodCount(2)
+        .logLevel(com.exlogcat.LogLevel.NONE);
 
     }
 

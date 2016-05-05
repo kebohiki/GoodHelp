@@ -126,7 +126,8 @@ public class ExNineGridView extends ViewGroup implements View.OnClickListener {
      */
     private void countRowsAndCloumns(int count) {
         if(count <= 3){
-            mCloumns = mRows = 1;
+            mCloumns = count;
+            mRows = 1;
         }else if(count <= 6){
             mRows = 2;
             mCloumns = count == 4 ? 2 : 3;

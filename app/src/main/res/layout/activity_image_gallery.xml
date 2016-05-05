@@ -10,7 +10,8 @@
     <com.wangw.goodhelp.ui.views.IndicatorViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.wangw.goodhelp.ui.views.IndicatorViewPager>
+        android:layout_height="wrap_content"
+        android:background="#000000"/>
 
 
 </RelativeLayout>

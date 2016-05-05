@@ -5,9 +5,14 @@ package com.wangw.goodhelp.common;
  */
 public class Constants {
 
-    public static final String BASEURL = "http://www.ningweb.com/product_picture/api/index.php/nightkiss/";
+    //测试线
+//    public static final String BASEURL = "http://www.ningweb.com/product_picture/api/index.php/nightkiss/";
+//    public static final String BASEIMAGEURL = "http://image.mengbaopai.com/";
 
-    public static final String BASEIMAGEURL = "http://image.mengbaopai.com/";
+    //正式
+    public static final String BASEURL = "http://oxinxian.com/api/index.php/nightkiss/";
+
+    public static final String BASEIMAGEURL = "http://wsimage.oxinxian.com/";
 
     public static final String IMAGES_CACHE = "GoodHelp/";
 

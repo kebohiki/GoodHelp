@@ -53,7 +53,7 @@ public class ImageGalleryAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView view = getView(position);
-        ImageHelp.loadImage(mContext,getItem(position),view);
+        ImageHelp.loadImage2(mContext,getItem(position),view);
         container.addView(view, ViewPager.LayoutParams.MATCH_PARENT, ViewPager.LayoutParams.MATCH_PARENT);
         return view;
     }

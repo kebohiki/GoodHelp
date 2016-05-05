@@ -12,6 +12,20 @@ import com.wangw.goodhelp.common.Constants;
  */
 public class ImageHelp {
 
+    /**
+     * 黑色占位图
+     * @param context
+     * @param key
+     * @param img
+     */
+    public static void loadImage2(Context context,String key,ImageView img){
+        Glide.with(context)
+                .load(Constants.BASEIMAGEURL+key)
+                .placeholder(R.color.black)
+                .error(R.color.black)
+                .crossFade()
+                .into(img);
+    }
 
     public static void loadImage(Context context,String key,ImageView img){
         Glide.with(context)

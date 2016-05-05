@@ -5,6 +5,7 @@ package com.wangw.goodhelp.ui.views;
  */
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -68,6 +69,7 @@ public class RefreshLayout extends SwipeRefreshLayout implements AbsListView.OnS
 
     public RefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setColorSchemeColors(Color.GREEN,Color.BLUE);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
 
         mListViewFooter = LayoutInflater.from(context).inflate(R.layout.listview_footer, null,

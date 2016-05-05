@@ -54,10 +54,12 @@ public class MainActivity extends BaseActivity implements RefreshLayout.OnLoadLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainActivity = this;
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        initTitleBar("微商云助手");
-        onInitView();
+        if(isLogin()) {
+            setContentView(R.layout.activity_main);
+            ButterKnife.bind(this);
+            initTitleBar("微商云助手");
+            onInitView();
+        }
     }
 
     private void onInitView() {
@@ -193,6 +195,6 @@ public class MainActivity extends BaseActivity implements RefreshLayout.OnLoadLi
     @Override
     public void onRefresh() {
         mPage = 0;
-        getTopiListData(true);
+        getTopiListData(false);
     }
 }
