@@ -1,5 +1,8 @@
 package com.wangw.goodhelp.api;
 
+import android.os.Build;
+
+import com.wangw.goodhelp.BuildConfig;
 import com.wangw.goodhelp.common.Constants;
 
 import okhttp3.OkHttpClient;
@@ -27,7 +30,10 @@ public class ServiceHelper {
     private static Retrofit getRetrofit(){
         if(mRetrofit == null){
             HttpLoggingInterceptor log = new HttpLoggingInterceptor();
-            log.setLevel(HttpLoggingInterceptor.Level.BODY);
+            if(BuildConfig.DEBUG)
+                log.setLevel(HttpLoggingInterceptor.Level.BODY);
+            else
+                log.setLevel(HttpLoggingInterceptor.Level.NONE);
             OkHttpClient httpClient = new OkHttpClient.Builder()
                     .addNetworkInterceptor(log)
                     .build();
