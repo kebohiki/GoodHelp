@@ -74,7 +74,7 @@ public class LoginActivity extends BaseActivity {
                 showToast("密码不能为空");
             }
         } else {
-            showToast("手机号不能为空");
+            showToast("用户名不能为空");
         }
 
         return false;
