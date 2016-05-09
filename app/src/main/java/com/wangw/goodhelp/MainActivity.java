@@ -57,7 +57,7 @@ public class MainActivity extends BaseActivity implements RefreshLayout.OnLoadLi
         if(isLogin()) {
             setContentView(R.layout.activity_main);
             ButterKnife.bind(this);
-            initTitleBar("微商云助手");
+            initTitleBar("瀚宇轩");
             onInitView();
         }
     }
